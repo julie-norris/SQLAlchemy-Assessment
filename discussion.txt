@@ -1,0 +1,81 @@
+-------------
+QUESTION ONE:
+-------------
+We have a model.py file with a class Brand, and that maps to a table 'brands' in a database.
+ 
+Explain what is returned and why when we type the following: 
+Brand.query.filter_by(name='Ford')
+----------------------------------------------
+
+ANSWER: From the brands table in the Brands class, the query returns any objects that have the name Ford.
+
+
+
+-------------
+QUESTION TWO:
+-------------
+In your own words, describe what a middle table is and what type of relationship (many to one, many to many, one to one, etc.) it manages.
+----------------------------------------------
+
+ANSWER: A middle table manages a many to many relationship between two other tables. There is a one to many relationship between each of the other tables and the middle table. The relationships use the Foreign Keys to navigate between all three tables. T
+
+
+---------------
+QUESTION THREE:
+---------------
+We are modeling a database for a restaurant and we have the following information from the restaurant management:
+
+    * The are three menus: breakfast, lunch, and dinner.
+
+    * We'd like to keep track of the times a menu is served in 24-hr time:
+        ** Breakfast is served from 8:00 a.m. - 11:30 a.m. (08:00 - 11:30)
+        ** Lunch is served from 11:30 a.m. - 4:30 p.m. (11:30 - 16:30)
+        ** Dinner is served from 4:30 p.m. - 10:00 p.m. (16:30-22:00)
+
+    * The restaurant has different dishes, and they want to be able to store the name and
+      description of each dish
+
+    * We want to be able to track which dishes appear on which menu, along with the price of 
+      each dish on the menu
+
+    * Some of the dishes are served on multiple menus (so they appear on lunch and dinner, 
+      for example, or on breakfast and lunch)
+
+    * If a dish is served on multiple menus, the dish costs less earlier in the day than it
+      does later in the day (ex: a dish at lunch costs less than it would at dinner).
+ 
+Please describe the tables you would create to model these relationships and save this information in a database. Please also list the columns you would put in each table.
+ 
+You can also list any questions you would still want to ask to clarify the data model.
+----------------------------------------------
+
+ANSWER:
+
+
+I would make 4 tables:
+
+Table: dishes
+dish_id (autoincrementing integer, primary key)
+name (string(20))
+description (string(200))
+
+
+Table:LunchMenu
+lunchtime_id (autoincrementing integer, primary key)
+dish_id (integer, foreign key, non-nullable)
+lnch_price (float? -- i don't think we learned if they can be floats)
+
+Table: DinnerMenu
+dinner_id (autoincrementing integer, primary key)
+dish_id (integer, foreign key, non-nullable)
+din_price (float? -- i don't think we learned if they can be floats)
+
+Table:BreakfastMenu
+brkfst_id (autoincrementing integer, primary key)
+dish_id (integer, foreign key, non-nullable)
+brk_price (float? -- i don't think we learned if they can be floats)
+
+
+***Question: The directions are unclear. Were we actually supposed to save this in a database? That would take a lot longer than just describing the tables. Also - not sure if the price should be an integer and then converted to  float or if it can be a Float type. ***()
+
+
